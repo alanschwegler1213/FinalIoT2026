@@ -1,0 +1,34 @@
+:root {
+  --bg: #f4f7f2;
+  --card: #fff;
+  --fg: #1c2a1c;
+  --muted: #5d6b5d;
+  --verde: #2f7d32;
+  --alerta: #c0392b;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121a12;
+    --card: #1b261b;
+    --fg: #e6efe6;
+    --muted: #9bad9b;
+    --verde: #66bb6a;
+    --alerta: #ef5350;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: system-ui, sans-serif; line-height: 1.5; }
+main { max-width: 640px; margin: 0 auto; padding: 16px; }
+h1 { margin: 8px 0 16px; }
+h2 { font-size: 1.1rem; margin: 24px 0 8px; }
+.tarjeta { background: var(--card); border-radius: 12px; padding: 16px; }
+.tarjeta p { margin: 4px 0; }
+.pct { font-size: 3.5rem; font-weight: 700; color: var(--verde); line-height: 1; }
+.muted { color: var(--muted); }
+.rangos { display: flex; gap: 8px; margin-bottom: 8px; }
+.rangos button { flex: 1; min-height: 44px; border: 1px solid var(--verde); border-radius: 8px; background: transparent; color: var(--fg); font: inherit; }
+.rangos button[aria-pressed="true"] { background: var(--verde); color: #fff; }
+.grafico { width: 100%; height: 200px; background: var(--card); border-radius: 12px; }
+.linea { fill: none; stroke: var(--verde); stroke-width: 2; }
+.umbral { stroke: var(--alerta); stroke-width: 1; stroke-dasharray: 3 3; vector-effect: non-scaling-stroke; }
+ul { padding-left: 20px; }
