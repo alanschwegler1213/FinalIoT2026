@@ -28,7 +28,7 @@ export async function POST(req: Request) {
     return Response.json({ error: "formato" }, { status: 400 });
   }
 
-  const ahora = Date.now() / 1000;
+  const ahora = Date.now() / 1000 + 300; // 5 min de tolerancia por desfase de reloj de la placa
   const filas = [];
   for (const l of lecturas) {
     const { crudo, medido_en } = l ?? {};

@@ -10,13 +10,14 @@
 - `POST /api/lecturas` responde con textos para la OLED (`pantalla.ultimo`/`proximo`); el cálculo vive en `web/lib/estado.ts`.
 - Firmware `firmware/humedad_wifi/` escrito y **compilado** (esp32 3.3.12, FQBN `esp32:esp32:esp32c3:CDCOnBoot=cdc`): mediana de 9 muestras, buffer en RTC_NOINIT (200 lecturas), NTP, HTTPS con raíces ISRG X1 y GTS R1, watchdog 120 s, reinicio tras 1 h sin enviar, OLED con 3 vistas, apagado 22-06, botón BOOT. Serial: enviar `c` imprime el crudo. NO probado en la placa.
 - arduino-cli 1.6.0 instalado (`C:\Program Files\Arduino CLI`); puertos COM3 y COM4.
+- **Desplegado en Vercel**: https://monitor-albahaca.vercel.app (proyecto `monitor-albahaca`, deploy con `vercel deploy --prod` desde `web/`, variables de entorno ya cargadas). API probada en producción por HTTPS (cadena GTS Root R1). La API acepta hasta 5 min de desfase de reloj.
 - Probado en local con datos simulados (API con curl, Realtime en el navegador). Datos de prueba borrados.
 - Incajob CLON está **pausado** para liberar cupo gratis (reactivar solo si hay cupo).
 
 ## Pendiente
 - [ ] Commit y push (nada commiteado todavía).
+- [ ] Poner WIFI_SSID, WIFI_PASS y DEVICE_TOKEN en `firmware/humedad_wifi/secrets.h` (la URL ya está).
 - [ ] Armar el circuito (sensor AOUT a GPIO3, OLED SDA GPIO6 / SCL GPIO7), copiar `secrets.h.example` a `secrets.h`, cargar el firmware y probar.
-- [ ] Desplegar en Vercel ANTES de probar la placa (necesita HTTPS); poner la URL en `secrets.h`.
 - [ ] Calibrar SECO/MOJADO con la maceta real y ajustar umbrales de la albahaca (`web/lib/humedad.ts`, valores provisorios 2800/1300, 30 %/45 %).
 - [ ] Verificar que GPIO6/7 estén libres para la OLED en la placa.
 - [ ] Probar PWA instalada en el celular.
