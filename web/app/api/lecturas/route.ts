@@ -1,5 +1,6 @@
 import { timingSafeEqual } from "node:crypto";
 import { supabase } from "@/lib/supabase";
+import { calcularEstado } from "@/lib/estado";
 
 const MAX_LOTE = 50;
 const SIETE_DIAS = 7 * 24 * 3600;
@@ -48,7 +49,11 @@ export async function POST(req: Request) {
     console.error(error);
     return Response.json({ error: "servidor" }, { status: 500 });
   }
-  return Response.json({ guardadas: filas.length }, { status: 201 });
+  // La placa muestra estos textos en la OLED; si el cálculo falla, las lecturas ya están guardadas.
+  const pantalla = await calcularEstado()
+    .then((e) => ("pantalla" in e ? e.pantalla : null))
+    .catch(() => null);
+  return Response.json({ guardadas: filas.length, pantalla }, { status: 201 });
 }
 
 export async function GET(req: Request) {
