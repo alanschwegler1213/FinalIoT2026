@@ -6,8 +6,8 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: "Albahaca",
     start_url: "/",
     display: "standalone",
-    background_color: "#f4f7f2",
-    theme_color: "#2f7d32",
+    background_color: "#16211b",
+    theme_color: "#16211b",
     icons: [{ src: "/icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" }],
   };
 }
